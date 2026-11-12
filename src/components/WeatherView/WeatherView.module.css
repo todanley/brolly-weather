@@ -1,0 +1,41 @@
+.grid {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: minmax(0, 1fr);
+  animation: enter 400ms ease-out;
+}
+
+.current,
+.hourly,
+.daily {
+  min-width: 0;
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    grid-template-areas:
+      'current daily'
+      'hourly daily';
+    align-items: start;
+  }
+
+  .current {
+    grid-area: current;
+  }
+
+  .hourly {
+    grid-area: hourly;
+  }
+
+  .daily {
+    grid-area: daily;
+  }
+}

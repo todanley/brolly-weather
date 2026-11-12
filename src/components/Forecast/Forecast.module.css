@@ -1,0 +1,106 @@
+.root {
+  padding: var(--space-5);
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.day {
+  display: grid;
+  grid-template-columns: 3.25rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--surface-border);
+}
+
+.day:first-child {
+  border-top: 0;
+}
+
+.dayName {
+  font-weight: 600;
+}
+
+.condition {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.conditionText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.label {
+  overflow: hidden;
+  font-size: 0.875rem;
+  color: var(--ink-muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.precipitation {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: #3f7aa6;
+}
+
+:root[data-sky='clear-night'] .precipitation,
+:root[data-sky='cloudy-night'] .precipitation,
+:root[data-sky='storm'] .precipitation {
+  color: #8ec1ea;
+}
+
+.temps {
+  display: grid;
+  grid-template-columns: 2.25rem 5.5rem 2.25rem;
+  align-items: center;
+  gap: var(--space-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.low {
+  text-align: right;
+  color: var(--ink-faint);
+}
+
+.high {
+  font-weight: 600;
+}
+
+.track {
+  position: relative;
+  height: 6px;
+  background: var(--skeleton);
+  border-radius: 999px;
+}
+
+.bar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--range-cool), var(--range-warm));
+}
+
+@media (max-width: 480px) {
+  .day {
+    grid-template-columns: 2.75rem minmax(0, 1fr) auto;
+    gap: var(--space-2);
+  }
+
+  .temps {
+    grid-template-columns: 2rem 3rem 2rem;
+    gap: 6px;
+  }
+}

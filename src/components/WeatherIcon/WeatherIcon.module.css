@@ -1,0 +1,38 @@
+.icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--ink-muted);
+}
+
+.icon[data-group='clear'][data-day='true'] {
+  color: #d99a2b;
+}
+
+.icon[data-group='clear'][data-day='false'] {
+  color: #c9d6ea;
+}
+
+.icon[data-group='partly-cloudy'][data-day='true'] {
+  color: #c08a3a;
+}
+
+.icon[data-group='drizzle'],
+.icon[data-group='rain'],
+.icon[data-group='showers'],
+.icon[data-group='freezing'] {
+  color: #3f7aa6;
+}
+
+.icon[data-group='thunderstorm'] {
+  color: #5b6f94;
+}
+
+.icon[data-group='snow'] {
+  color: #6c9cc2;
+}
+
+:root[data-sky='clear-night'] .icon,
+:root[data-sky='cloudy-night'] .icon,
+:root[data-sky='storm'] .icon {
+  filter: brightness(1.45) saturate(0.85);
+}

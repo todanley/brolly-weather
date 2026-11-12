@@ -1,0 +1,185 @@
+/* Design tokens + condition-aware sky themes. Components only consume the
+   semantic variables (--ink, --surface, …), never raw colours. */
+
+:root {
+  --font-sans: 'Inter var', 'Segoe UI Variable', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial,
+    sans-serif;
+  --font-display: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, ui-serif, serif;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  --shadow-soft: 0 1px 2px rgb(15 30 45 / 0.06), 0 8px 24px rgb(15 30 45 / 0.06);
+  --transition-sky: 900ms cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  /* neutral (idle) palette */
+  --sky-top: #e3ebf0;
+  --sky-bottom: #f4f0e8;
+  --glow: rgb(246 211 138 / 0.35);
+  --ink: #142330;
+  --ink-muted: #4d5f6c;
+  --ink-faint: #7a8a95;
+  --surface: rgb(255 255 255 / 0.58);
+  --surface-strong: rgb(255 255 255 / 0.85);
+  --surface-border: rgb(20 35 48 / 0.08);
+  --accent: #1f5f8b;
+  --accent-ink: #ffffff;
+  --focus: #1f5f8b;
+  --danger: #a3372a;
+  --skeleton: rgb(20 35 48 / 0.07);
+  --skeleton-shine: rgb(255 255 255 / 0.55);
+  --range-cool: #7fb2d6;
+  --range-warm: #e9a556;
+
+  color-scheme: light;
+}
+
+:root[data-sky='clear-day'] {
+  --sky-top: #b9d8ee;
+  --sky-bottom: #f3eadb;
+  --glow: rgb(250 208 120 / 0.55);
+  --accent: #1b5e8c;
+}
+
+:root[data-sky='cloudy-day'] {
+  --sky-top: #cdd6dd;
+  --sky-bottom: #eeece7;
+  --glow: rgb(255 255 255 / 0.5);
+  --accent: #36576e;
+}
+
+:root[data-sky='fog'] {
+  --sky-top: #d5d9d9;
+  --sky-bottom: #eeede9;
+  --glow: rgb(255 255 255 / 0.65);
+  --accent: #4b5d68;
+}
+
+:root[data-sky='snow'] {
+  --sky-top: #e1e9f0;
+  --sky-bottom: #fbfbf9;
+  --glow: rgb(214 230 245 / 0.8);
+  --accent: #2d6286;
+}
+
+:root[data-sky='rain'] {
+  --sky-top: #93a7b6;
+  --sky-bottom: #cdd5da;
+  --glow: rgb(220 232 240 / 0.35);
+  --ink: #0f1d28;
+  --ink-muted: #2f414e;
+  --ink-faint: #4f616d;
+  --surface: rgb(255 255 255 / 0.5);
+  --accent: #1d4d6e;
+}
+
+:root[data-sky='clear-night'],
+:root[data-sky='cloudy-night'],
+:root[data-sky='storm'] {
+  --ink: #eef3f8;
+  --ink-muted: #b9c6d2;
+  --ink-faint: #8796a4;
+  --surface: rgb(12 22 34 / 0.42);
+  --surface-strong: rgb(16 28 42 / 0.92);
+  --surface-border: rgb(238 243 248 / 0.1);
+  --accent: #9cc6ea;
+  --accent-ink: #0d1a26;
+  --focus: #9cc6ea;
+  --danger: #ffb4a6;
+  --skeleton: rgb(238 243 248 / 0.08);
+  --skeleton-shine: rgb(238 243 248 / 0.12);
+  --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.2), 0 8px 24px rgb(0 0 0 / 0.18);
+  color-scheme: dark;
+}
+
+:root[data-sky='clear-night'] {
+  --sky-top: #0c1727;
+  --sky-bottom: #1f3047;
+  --glow: rgb(170 195 230 / 0.22);
+}
+
+:root[data-sky='cloudy-night'] {
+  --sky-top: #18212c;
+  --sky-bottom: #2d3a48;
+  --glow: rgb(200 210 220 / 0.1);
+}
+
+:root[data-sky='storm'] {
+  --sky-top: #20252e;
+  --sky-bottom: #444d59;
+  --glow: rgb(210 220 255 / 0.12);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--ink);
+  background-color: var(--sky-bottom);
+  background-image: radial-gradient(60rem 30rem at 85% -10%, var(--glow), transparent 70%),
+    linear-gradient(180deg, var(--sky-top) 0%, var(--sky-bottom) 85%);
+  background-attachment: fixed;
+  transition:
+    background-color var(--transition-sky),
+    color var(--transition-sky);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

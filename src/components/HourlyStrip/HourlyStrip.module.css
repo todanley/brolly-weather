@@ -1,0 +1,73 @@
+.root {
+  min-width: 0;
+  padding: var(--space-5) var(--space-5) var(--space-4);
+}
+
+.scroller {
+  padding: 2px 2px var(--space-2);
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+  scrollbar-color: var(--skeleton) transparent;
+}
+
+.scroller:focus-visible {
+  outline-offset: -2px;
+}
+
+.list {
+  display: flex;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hour {
+  display: flex;
+  flex: 0 0 60px;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-1);
+  border-radius: var(--radius-md);
+  scroll-snap-align: start;
+}
+
+.hour[data-now='true'] {
+  background: color-mix(in srgb, var(--surface-strong) 70%, transparent);
+  border: 1px solid var(--surface-border);
+}
+
+.time {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--ink-muted);
+}
+
+.hour[data-now='true'] .time {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.temperature {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.precipitation {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  min-height: 16px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: #3f7aa6;
+}
+
+:root[data-sky='clear-night'] .precipitation,
+:root[data-sky='cloudy-night'] .precipitation,
+:root[data-sky='storm'] .precipitation {
+  color: #8ec1ea;
+}
